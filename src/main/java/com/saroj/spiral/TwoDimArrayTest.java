@@ -10,46 +10,46 @@ package com.saroj.spiral;
 public class TwoDimArrayTest {
  
  //Find average review of 3rd movie when the rows are of different length
-//public static double findAverageReview(int[][] ratings){
-//  int sum=0;
-//  int count=0;
-//  double average=0.0;
-//  for(int rows=0; rows<ratings.length;rows++){
-//    if(ratings[rows].length>3){
-//      sum+=ratings[rows][3];
-//      count++;
-//    }
-//  }
-//  if(count>0){
-//     average=(double)sum/count;
-//  //  System.out.println(average);
-//  }
-//  return average;
+public static double findAverageReview(int[][] ratings){
+  int sum=0;
+  int count=0;
+  double average=0.0;
+  for(int rows=0; rows<ratings.length;rows++){
+    if(ratings[rows].length>3){
+      sum+=ratings[rows][3];
+      count++;
+    }
+  }
+  if(count>0){
+     average=(double)sum/count;
+  //  System.out.println(average);
+  }
+  return average;
+}
+
+//public static double average(int[][] input){
+//	double avg=0.0;
+//	int sum=0;
+//	int k=0;
+//	for(int i=0;i<input.length;i++){
+//	  for(int j=0;j<input.length;j++){
+//	     if((i==4)&&(j==4)){
+//	     if(input[i][j]==0){
+//	     i++;
+//	     }else{
+//	        sum+=input[i][j]; 
+//	     }
+//	     }
+//     
 //}
-
-public static double average(int[][] input){
-	double avg=0.0;
-	int sum=0;
-	int k=0;
-	for(int i=0;i<input.length;i++){
-	  for(int j=0;j<input.length;j++){
-	     if((i==4)&&(j==4)){
-	     if(input[i][j]==0){
-	     i++;
-	     }else{
-	        sum+=input[i][j]; 
-	     }
-	     }
-     
-}
-	}
-int length=input.length;
-
-if(sum!=0){
-  avg=sum/(k);
-}
-return avg;
-}
+//	}
+//int length=input.length;
+//
+//if(sum!=0){
+//  avg=sum/(k);
+//}
+//return avg;
+//}
 
 
 
@@ -59,9 +59,10 @@ return avg;
    */
   public static void main(String[] args) {
     int[][] ratings = {{1,2,4,5},{3,4,8,7,6},{6,7,4,5},{4,5,6,3}};
-    System.out.println("Average review of 3rd movie:"+TwoDimArrayTest.average(ratings));
-    int[][] arr={{1,2,3,4},{5,6,7,8},{9,10,11,12},{13,14,15,16}};
-    TwoDimArrayTest.doSpiral(arr);
+    double result = TwoDimArrayTest.findAverageReview(ratings);
+    System.out.println("Average review of 3rd movie:"+result);
+  //  int[][] arr={{1,2,3,4},{5,6,7,8},{9,10,11,12},{13,14,15,16}};
+  //  TwoDimArrayTest.doSpiral(arr);
   }
   public static void doSpiral(int[][] inputArr){
     int rows=inputArr.length;
