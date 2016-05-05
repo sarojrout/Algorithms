@@ -2,7 +2,7 @@ package com.saroj.bit;
 
 public class FindPositionOfSetBit {
 	public static void main(String[] args) {
-		int result = FindPositionOfSetBit.findPos(6);
+		int result = FindPositionOfSetBit.findPos(2);
 		System.out.println(result);
 	}
 
