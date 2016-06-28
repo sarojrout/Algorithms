@@ -34,7 +34,7 @@ public class RemoveDupNodes {
 //    g.next=h;
     a.printList();
   
-  RemoveDupNodes.removeDup(a);
+  RemoveDupNodes.removeDuplicates(a);
   System.out.println("After removing the duplicates");
   a.printList();
   }
@@ -69,9 +69,9 @@ public class RemoveDupNodes {
   //  return head;
   }
   
-  public static void removeDup(Node head){
+  public static Node removeDup(Node head){
     if(head==null){
-      return;
+      return null;
     }
     Node runner = null;
     while(head !=null){
@@ -85,7 +85,23 @@ public class RemoveDupNodes {
       }
       head = head.next;
     }
+    return head;
   }
+  
+  public static Node removeDuplicates(Node head) {  
+	    Node current=head;
+	        if(current==null)
+	            return head;
+	        while(current!=null && current.next!=null)
+	        {
+	          if(current.value==current.next.value)
+	              current.next=current.next.next;
+	           else
+	               current=current.next;
+
+	        }
+	        return head;
+	    }
   
   static class Node{
     int value;

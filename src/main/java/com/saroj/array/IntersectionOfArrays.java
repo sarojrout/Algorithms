@@ -8,7 +8,7 @@ If no element is common in two array, then print Zero.
 public class IntersectionOfArrays {
 
 	public static void main(String[] args) {
-		int[] arr1={1, 2, 3, 4, 5, 6};
+		int[] arr1={1, 2, 3, 4, 5, 6,3};
 		int[] arr2={3, 4, 5, 6};
 		System.out.println(IntersectionOfArrays.intersect(arr1, arr2));
 	}

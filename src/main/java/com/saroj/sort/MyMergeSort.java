@@ -2,55 +2,64 @@ package com.saroj.sort;
 
 public class MyMergeSort {
 
-  private static void mergeSort(int[] arr, int l, int r){
-    while(l<r){
-      int mid = l+(r-l)/2;
-      mergeSort(arr,l,mid);
-      mergeSort(arr,mid+1,r);
-      merge(arr,l,mid,r);
+	private int[] array;
+    private int[] tempMergArr;
+    private int length;
+ 
+    public static void main(String a[]){
+         
+        int[] inputArr = {45,23,11,89,77,98,4,28,65,43};
+        MyMergeSort mms = new MyMergeSort();
+        mms.sort(inputArr);
+        for(int i:inputArr){
+            System.out.print(i);
+            System.out.print(" ");
+        }
     }
-    
-  }
-  
-  private static void merge(int[] arr, int l, int m, int r){
-    int n1 = m-l+1;
-    int n2 = r-m;
-    int[] L = new int[n1];
-    int[] R = new int[n2];
-    for(int i=0; i<n1;i++){
-      L[i]=arr[l+i];
+     
+    public void sort(int inputArr[]) {
+        this.array = inputArr;
+        this.length = inputArr.length;
+        this.tempMergArr = new int[length];
+        doMergeSort(0, length - 1);
     }
-    for(int j=0;j<n2;j++){
-      R[j] = arr[m+1+j];
+ 
+    private void doMergeSort(int lowerIndex, int higherIndex) {
+         
+        if (lowerIndex < higherIndex) {
+            int middle = lowerIndex + (higherIndex - lowerIndex) / 2;
+            // Below step sorts the left side of the array
+            doMergeSort(lowerIndex, middle);
+            // Below step sorts the right side of the array
+            doMergeSort(middle + 1, higherIndex);
+            // Now merge both sides
+            mergeParts(lowerIndex, middle, higherIndex);
+        }
     }
-    int i=0, j=0, k=l;
-   
-    while(i < n1 && j < n2){
-     if(L[i]<R[j]){
-       arr[k] = L[i];
-       i++;
-     }else{
-       arr[k] = R[j];
-       j++;
-     }
-     k++;
+ 
+    private void mergeParts(int lowerIndex, int middle, int higherIndex) {
+ 
+        for (int i = lowerIndex; i <= higherIndex; i++) {
+            tempMergArr[i] = array[i];
+        }
+        int i = lowerIndex;
+        int j = middle + 1;
+        int k = lowerIndex;
+        while (i <= middle && j <= higherIndex) {
+            if (tempMergArr[i] <= tempMergArr[j]) {
+                array[k] = tempMergArr[i];
+                i++;
+            } else {
+                array[k] = tempMergArr[j];
+                j++;
+            }
+            k++;
+        }
+        while (i <= middle) {
+            array[k] = tempMergArr[i];
+            k++;
+            i++;
+        }
+ 
     }
-    while(i<n1){
-      arr[k]=L[i];
-      i++;
-      k++;
-    }
-    while(j<n2){
-      arr[k]=R[j];
-      j++;
-      k++;
-    }
-  }
-  
-  public static void main(String[] args) {
-   int[] arr = {4,5,3,7,2,8,1};
-   MyMergeSort.mergeSort(arr, 0, arr.length);
-   System.out.println(arr);
-  }
-
 }

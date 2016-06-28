@@ -33,7 +33,7 @@ public class InsertionSort {
 
 	public static void main(String[] args) {
 
-		int a[]={4,2,3,5,1,7};
+		int a[]={2,6,3,5};
 		InsertionSort.doInsertionSort(a);
 		System.out.println(Arrays.toString(a));
 	}

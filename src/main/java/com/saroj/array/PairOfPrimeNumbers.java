@@ -6,13 +6,14 @@ public class PairOfPrimeNumbers {
 		String result = PairOfPrimeNumbers.findPairPrimeNumbers(8);
 
 		System.out.println(result);
+	//	System.out.println(PairOfPrimeNumbers.validatePrime(17));
 
 	}
 	// check prime number
 	public static boolean validatePrime(int n) {
 		boolean f = true;
 
-		for (int i = 2; i <= n / 2; i++) {
+		for (int i = 2; i <= n/2; i++) {
 			if (n % i == 0) {
 				f = false;
 				break;

@@ -9,33 +9,47 @@ package com.saroj.sort;
  */
 public class MergeSort {
 	
-	private int[] array;
-	private int[] tempMergeArray;
-	private int length;
-	
-	public void sort(int[] input){
-		this.array = input;
-		this.length=input.length;
-		this.tempMergeArray = new int[length];
-		doMergeSort(0, length-1);
+	int[] tempArr;
+	int[] arr;
+	int length;
+	public void sort(int[] inputArr){
+		this.arr=inputArr;
+		this.length=inputArr.length;
+		tempArr=new int[length];		
+		merge(0, length-1);
 	}
 	
-	private void doMergeSort(int low, int high){
-		int middle = low + (high-low)/2;
-		doMergeSort(low, middle);
-		doMergeSort(middle+1, high);
-		mergeParts(low,middle,high);
+	public void merge(int low, int high){
+		
+		if(low < high){
+			int mid=low+(high-low)/2;
+			merge(low, mid);
+			merge(mid+1,high);
+			mergeParts(low, mid, high);
+		}
 	}
-	
-	private void mergeParts(int low, int middle, int high){
-		for(int i = low; i<high; i++){
-			tempMergeArray[i]=array[i];
-		 i = low;
-		 int j=middle+1;
-		 int k =low;
-		 while(i <=middle+1 && j <=high){
-			 
-		 }
+	public void mergeParts(int low, int mid, int high){
+		for(int i=low; i<= high; i++){
+			tempArr[i]=arr[i];
+		}
+		int i=low;
+		int j= mid+1;
+		int k=low;
+		
+		while(i<=mid && j<=high){
+			if(tempArr[i] <= tempArr[j]){
+				arr[k]=tempArr[i];
+				i++;
+			}else {
+				arr[k] = tempArr[j];
+				j++;
+			}
+			k++;
+		}
+		while(i<=mid){
+			arr[k] =tempArr[i];
+			k++;
+			i++;
 		}
 	}
 
@@ -43,8 +57,14 @@ public class MergeSort {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		int[] arr= {2,3,8,4,6,5};
+		MergeSort ms= new MergeSort();		
+		ms.sort(arr);
+		for(int i:arr){
+			System.out.print(i+" ");
+			System.out.print(" ");
+		}
+		
 	}
 
 }

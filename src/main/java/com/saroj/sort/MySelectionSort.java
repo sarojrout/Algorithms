@@ -19,13 +19,13 @@ public class MySelectionSort {
   }
 
   public static void main(String[] args) {
-    int arr[]={1,2,2,3,4,8,10,18,11};
+    int arr[]={2,6,3,5,4,7};
  //   int result = MySelectionSort.distribute(arr);
   int[] result =  MySelectionSort.selectionSort(arr);
  //   System.out.println(Arrays.toString(arr));
     System.out.println(Arrays.toString(result));
     
-    System.out.println("second largest number: "+result[result.length-2]);
+    System.out.println(" largest number: "+result[result.length-1]);
 
   }
   static int distributeCandy(int[] input) {

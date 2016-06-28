@@ -1,40 +1,66 @@
 package com.saroj.sort;
 
+import java.util.Arrays;
+
 public class NewMergeSort {
-	
-	public static void mergeSort(int[] arr, int l, int r){
-		int mid = (l+r)/2;
-		mergeSort(arr, l, mid);
-		mergeSort(arr, mid, r);
-		merge(arr, l, mid, r);
-	}
-
-	public static void merge(int[] arr, int l, int mid, int r){
-		int[] lArr = null;
-		int[] rArr=null;
-		for(int i =0; i<=mid;i++){
-			lArr[i] = arr[l+i];
-		}
-		for(int j = mid+1;j<=r;j++){
-			rArr[j] = arr[mid+1+j];
-		}
-		int i =0, j=0, k=l;
-		while(i<mid && j < r){
-			if(lArr[i] < rArr[j]){
-				arr[k]=lArr[i];
-				i++;
-			}else{
-				arr[k]=rArr[j];
-				j++;
-			}
-			k++;
-		}
-	}
-	public static void main(String[] args) {
-		int[] arr = {1,4,3,5,2,8};
-		NewMergeSort.mergeSort(arr, 0, arr.length);
-		System.out.println(arr);
-
-	}
-
+	private int[] array;
+    private int[] tempMergArr;
+    private int length;
+ 
+    public static void main(String a[]){
+         
+        int[] inputArr = {45,23,11,89,77,98,4,28,65,43};
+        MyMergeSort mms = new MyMergeSort();
+        mms.sort(inputArr);
+        for(int i:inputArr){
+            System.out.print(i);
+            System.out.print(" ");
+        }
+    }
+     
+    public void sort(int[] inputArr) {
+        this.array = inputArr;
+        this.length = inputArr.length;
+        this.tempMergArr = new int[length];
+        doMergeSort(0, length - 1);
+    }
+ 
+    private void doMergeSort(int lowerIndex, int higherIndex) {
+         
+        if (lowerIndex < higherIndex) {
+            int middle = lowerIndex + (higherIndex - lowerIndex) / 2;
+            // Below step sorts the left side of the array
+            doMergeSort(lowerIndex, middle);
+            // Below step sorts the right side of the array
+            doMergeSort(middle + 1, higherIndex);
+            // Now merge both sides
+            mergeParts(lowerIndex, middle, higherIndex);
+        }
+    }
+ 
+    private void mergeParts(int lowerIndex, int middle, int higherIndex) {
+ 
+        for (int i = lowerIndex; i <= higherIndex; i++) {
+            tempMergArr[i] = array[i];
+        }
+        int i = lowerIndex;
+        int j = middle + 1;
+        int k = lowerIndex;
+        while (i <= middle && j <= higherIndex) {
+            if (tempMergArr[i] <= tempMergArr[j]) {
+                array[k] = tempMergArr[i];
+                i++;
+            } else {
+                array[k] = tempMergArr[j];
+                j++;
+            }
+            k++;
+        }
+        while (i <= middle) {
+            array[k] = tempMergArr[i];
+            k++;
+            i++;
+        }
+ 
+    }
 }
